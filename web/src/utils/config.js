@@ -1,32 +1,34 @@
-export const api = "http://localhost:5000/api"
+export const api = "http://127.0.0.1:5000/api"
 
-export const upload = "http://localhost:5000/uploads"
+export const upload = "http://127.0.0.1:5000/uploads"
 
 export const requestConfig = (method, data, token = null, image = null) => {
-  let config
+  let config;
 
-  if(image) {
+  if (image) {
     config = {
-      method,
+      method: method,
       body: data,
-      headers: {}
-    }
-  } else if(method === "DELETE" || data === null) {
+      headers: {},
+    };
+  } else if (method === "DELETE" || data === null) {
     config = {
-      method,
-      headers: {}
-    }
+      method: method,
+      headers: {},
+    };
   } else {
     config = {
-      method,
+      method: method,
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
-      }
-    }
+        "Content-Type": "application/json",
+      },
+    };
   }
-  if(token){
-    config.headers.Authoriization =  `Bearer ${token}`
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  return config
-}
+
+  return config;
+};
