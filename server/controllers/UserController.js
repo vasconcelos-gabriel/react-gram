@@ -25,7 +25,7 @@ const register = async (req, res) => {
   if (user) {
     res
       .status(422)
-      .json({ erros: ['Email já utilizado, por favor utilize outro'] })
+      .json({ errors: ['Email já utilizado, por favor utilize outro'] })
     return
   }
 
@@ -44,7 +44,7 @@ const register = async (req, res) => {
   if (!newUser) {
     res
       .status(422)
-      .json({ erros: ['Houve um erro, tente novamente mais tarde'] })
+      .json({ errors: ['Houve um erro, tente novamente mais tarde'] })
     return
   }
 
@@ -61,13 +61,13 @@ const login = async (req, res) => {
   const user = await User.findOne({ email })
 
   if (!user) {
-    res.status(404).json({ erros: ['Usuário não existe, tente outro email'] })
+    res.status(404).json({ errors: ['Usuário não existe, tente outro email'] })
     return
   }
 
   //Checkar se a senha bate
   if (!(await bcrypt.compare(password, user.password))) {
-    res.status(422).json({ erros: ['Senha Inválida'] })
+    res.status(422).json({ errors: ['Senha Inválida'] })
     return
   }
 

@@ -30,7 +30,7 @@ const Register = () => {
       password,
       confirmPassword
     }
-    console.log(user)
+
     dispatch(register(user))
   }
 
