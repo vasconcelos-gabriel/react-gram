@@ -98,6 +98,12 @@ const updatePhoto = async (req, res) => {
   const { id } = req.params
   const { title } = req.body
 
+  let image;
+
+  if (req.file) {
+    image = req.file.filename;
+  }
+
   const reqUser = req.user
   const photo = await Photo.findById(id)
 
